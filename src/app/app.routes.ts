@@ -10,7 +10,6 @@ export const routes: Routes = [
   {
     path: 'about',
     loadComponent: () => import('./pages/about/about'),
-    canActivate: [authGuard],
   },
   {
     path: 'login',

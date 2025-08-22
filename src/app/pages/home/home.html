@@ -1,1 +1,5 @@
-<p>home works!</p>
+<div class="todo-list">
+  @for (todo of todoFacade.todoData.value() || []; track todo.id) {
+  <lib-ui-todo-item />
+  }
+</div>

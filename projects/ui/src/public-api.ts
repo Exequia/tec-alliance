@@ -4,3 +4,4 @@
 
 export * from './lib/atoms/navbar/navbar';
 export * from './lib/atoms/toast/toast';
+export * from './lib/atoms/todo-item/todo-item';
