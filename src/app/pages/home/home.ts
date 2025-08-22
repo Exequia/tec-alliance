@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { TodoFacade } from '@todo';
-import { TodoItem } from '@ui';
+import { TodoAdd, TodoItem } from '@ui';
 
 @Component({
   selector: 'app-home',
-  imports: [TodoItem],
+  imports: [TodoAdd, TodoItem],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

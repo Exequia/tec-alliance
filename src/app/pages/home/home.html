@@ -1,5 +1,21 @@
+<div class="todo-new">
+  <h2>Add new TODO</h2>
+  <lib-ui-todo-add (addNewTodo)="todoFacade.addTodo($event)" />
+</div>
+<hr />
+@defer { @switch (todoFacade.todoData.status()) { @case ('resolved') {
 <div class="todo-list">
+  <h2>Current TODO's</h2>
   @for (todo of todoFacade.todoData.value() || []; track todo.id) {
-  <lib-ui-todo-item />
+  <lib-ui-todo-item [todo]="todo" />
   }
 </div>
+} @case ('error') {
+<div class="alert alert-danger" role="alert">Error loading todos.</div>
+} } } @loading {
+<div class="d-flex justify-content-center mt-5">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+}

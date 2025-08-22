@@ -1,5 +1,5 @@
 import { httpResource } from '@angular/common/http';
-import { Injectable, Signal } from '@angular/core';
+import { inject, Injectable, Injector, ResourceStatus, Signal } from '@angular/core';
 import { Todo } from '../../models/todo.models';
 import { User } from '@users';
 
@@ -7,11 +7,28 @@ import { User } from '@users';
   providedIn: 'root',
 })
 export class TodoApi {
-  getTodoById(user: Signal<User | null>) {
+  private readonly _injector = inject(Injector);
+
+  getTodoById(user: Signal<User | null>, newTodoStatus?: Signal<ResourceStatus>) {
     return httpResource<Todo>(() => {
+      console.log('getTodoById', newTodoStatus?.());
       const userId = user()?.id;
-      if (userId) {
+      if (userId && (newTodoStatus?.() === 'idle' || newTodoStatus?.() === 'resolved')) {
         return `https://jsonplaceholder.typicode.com/todos?userId=${userId}`;
+      } else {
+        return undefined;
+      }
+    });
+  }
+
+  addTodo(newTodoTitle: Signal<string | undefined>, userId: number) {
+    return httpResource<Todo>(() => {
+      if (newTodoTitle() && userId) {
+        return {
+          method: 'POST',
+          url: 'https://jsonplaceholder.typicode.com/todos',
+          body: { title: newTodoTitle(), userId },
+        };
       } else {
         return undefined;
       }

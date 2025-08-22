@@ -1,0 +1,23 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex gap-2">
+  <div class="flex-grow-1">
+    <label for="todoTitle">Todo Title:</label>
+    <input
+      type="text"
+      class="form-control"
+      formControlName="title"
+      id="todoTitle"
+      placeholder="New TODO to add..."
+      maxlength="250"
+    />
+    @if (title.invalid && (title.dirty || title.touched)) {
+    <div class="text-danger mt-2">
+      @if (title.errors?.['required']) {
+      <div>Title is required.</div>
+      } @if (title.errors?.['maxlength']) {
+      <div>Title cannot be more than 250 characters.</div>
+      }
+    </div>
+    }
+  </div>
+  <button type="submit" class="btn btn-success" [disabled]="form.invalid">Add</button>
+</form>
