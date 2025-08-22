@@ -136,6 +136,58 @@
           }
         }
       }
+    },
+    "todo": {
+      "projectType": "library",
+      "root": "projects/todo",
+      "sourceRoot": "projects/todo/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/todo/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/todo/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/todo/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "users": {
+      "projectType": "library",
+      "root": "projects/users",
+      "sourceRoot": "projects/users/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/users/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/users/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/users/tsconfig.spec.json"
+          }
+        }
+      }
     }
   }
 }

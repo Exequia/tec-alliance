@@ -17,7 +17,9 @@
     "baseUrl": "./",
     "paths": {
       "@ui": ["projects/ui/src/public-api.ts"],
-      "@state": ["projects/state/src/public-api.ts"]
+      "@state": ["projects/state/src/public-api.ts"],
+      "@todo": ["projects/todo/src/public-api.ts"],
+      "@users": ["projects/users/src/public-api.ts"]
     }
   },
   "angularCompilerOptions": {
@@ -46,6 +48,18 @@
     },
     {
       "path": "./projects/state/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/todo/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/todo/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/users/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/users/tsconfig.spec.json"
     }
   ]
 }
