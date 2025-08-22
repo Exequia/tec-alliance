@@ -1,0 +1,26 @@
+<div class="login-container">
+  <form [formGroup]="form" (ngSubmit)="login()">
+    <h2>Login</h2>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        class="form-control"
+        placeholder="Enter your email"
+        formControlName="email"
+        [class.is-invalid]="form.controls.email.invalid && form.controls.email.touched"
+      />
+      @if (form.controls.email.invalid && form.controls.email.touched) {
+      <div class="invalid-feedback">
+        @if (form.controls.email.hasError('required')) {
+        <div>Email is required.</div>
+        } @if (form.controls.email.hasError('email')) {
+        <div>Please enter a valid email address.</div>
+        }
+      </div>
+      }
+    </div>
+    <button type="submit" class="btn btn-primary mt-3" [disabled]="form.invalid">Login</button>
+  </form>
+</div>
