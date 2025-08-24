@@ -1,6 +1,86 @@
 <div class="todo-item">
   <input type="checkbox" [checked]="todo().completed" />
   <span [class.completed]="todo().completed">{{ todo().title }}</span>
-  <button class="btn btn-primary"><i class="bi bi-pencil"></i></button>
-  <button class="btn btn-danger"><i class="bi bi-trash"></i></button>
+  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editTodo">
+    <i class="bi bi-pencil"></i>
+  </button>
+  <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteTodo">
+    <i class="bi bi-trash"></i>
+  </button>
+</div>
+
+<!-- Edit Modal -->
+<div
+  class="modal fade"
+  id="editTodo"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Todo</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="d-flex gap-2">
+          <div class="flex-grow-1">
+            <label for="todoTitle">Todo Title:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="title"
+              id="todoTitle"
+              placeholder="New TODO to add..."
+              maxlength="250"
+            />
+            @if (title.invalid && (title.dirty || title.touched)) {
+            <div class="text-danger mt-2">
+              @if (title.errors?.['required']) {
+              <div>Title is required.</div>
+              } @if (title.errors?.['maxlength']) {
+              <div>Title cannot be more than 250 characters.</div>
+              }
+            </div>
+            }
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div
+  class="modal fade"
+  id="deleteTodo"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Todo</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h2>Are you sure you want to delete this todo?</h2>
+        <p>This action cannot be undone.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close without saving
+        </button>
+        <button type="button" class="btn btn-danger" (click)="initTodoDeletion()">
+          Confirm Deletion
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

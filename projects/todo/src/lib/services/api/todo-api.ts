@@ -9,11 +9,20 @@ import { User } from '@users';
 export class TodoApi {
   private readonly _injector = inject(Injector);
 
-  getTodoById(user: Signal<User | null>, newTodoStatus?: Signal<ResourceStatus>) {
+  getTodoById(
+    user: Signal<User | null>,
+    newTodoStatus?: Signal<ResourceStatus>,
+    updatedTodoStatus?: Signal<ResourceStatus>,
+    deleteTodoStatus?: Signal<ResourceStatus>
+  ) {
     return httpResource<Todo>(() => {
-      console.log('getTodoById', newTodoStatus?.());
       const userId = user()?.id;
-      if (userId && (newTodoStatus?.() === 'idle' || newTodoStatus?.() === 'resolved')) {
+      if (
+        userId &&
+        (newTodoStatus?.() === 'idle' || newTodoStatus?.() === 'resolved') &&
+        (updatedTodoStatus?.() === 'idle' || updatedTodoStatus?.() === 'resolved') &&
+        (deleteTodoStatus?.() === 'idle' || deleteTodoStatus?.() === 'resolved')
+      ) {
         return `https://jsonplaceholder.typicode.com/todos?userId=${userId}`;
       } else {
         return undefined;
@@ -28,6 +37,33 @@ export class TodoApi {
           method: 'POST',
           url: 'https://jsonplaceholder.typicode.com/todos',
           body: { title: newTodoTitle(), userId },
+        };
+      } else {
+        return undefined;
+      }
+    });
+  }
+
+  updateTodo(todo: Signal<Todo | undefined>) {
+    return httpResource<Todo>(() => {
+      if (!!todo()) {
+        return {
+          method: 'PUT',
+          url: `https://jsonplaceholder.typicode.com/todos/${todo()!.id}`,
+          body: { todo: todo() },
+        };
+      } else {
+        return undefined;
+      }
+    });
+  }
+
+  deleteTodo(todo: Signal<Todo | undefined>) {
+    return httpResource<Todo>(() => {
+      if (!!todo()) {
+        return {
+          method: 'DELETE',
+          url: `https://jsonplaceholder.typicode.com/todos/${todo()!.id}`,
         };
       } else {
         return undefined;

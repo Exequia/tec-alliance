@@ -1,1 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Navigation transition */
+::view-transition-old(root) {
+  animation: exit 0.3s ease 0s 1 reverse forwards;
+}
+
+::view-transition-new(root) {
+  animation: enter 0.5s ease 0s 1 normal forwards;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateX(250px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes exit {
+  from {
+    opacity: 0;
+    transform: translateX(-250px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+/* Navigation transition */

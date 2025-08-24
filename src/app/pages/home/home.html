@@ -7,7 +7,11 @@
 <div class="todo-list">
   <h2>Current TODO's</h2>
   @for (todo of todoFacade.todoData.value() || []; track todo.id) {
-  <lib-ui-todo-item [todo]="todo" />
+  <lib-ui-todo-item
+    [todo]="todo"
+    (editTodo)="todoFacade.editTodo($event)"
+    (removeTodo)="todoFacade.removeTodo($event)"
+  />
   }
 </div>
 } @case ('error') {
