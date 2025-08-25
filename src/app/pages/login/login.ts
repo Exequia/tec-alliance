@@ -13,7 +13,7 @@ export default class LoginComponent {
   readonly fb = inject(FormBuilder);
   readonly stateFacade = inject(StateFacade);
 
-  protected readonly form = this.fb.group({
+  form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
   });
 

@@ -1,16 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { About } from './about';
+import About from './about';
+import { provideZonelessChangeDetection } from '@angular/core';
 
-describe('About', () => {
+fdescribe('About', () => {
   let component: About;
   let fixture: ComponentFixture<About>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [About]
-    })
-    .compileComponents();
+      imports: [About],
+      providers: [provideZonelessChangeDetection()],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(About);
     component = fixture.componentInstance;

@@ -14,7 +14,7 @@ export class Toast implements AfterViewInit {
 
   toast = viewChild.required<ElementRef<HTMLDivElement>>('liveToast');
 
-  private toastInstance: any;
+  toastInstance: any;
 
   constructor() {
     effect(() => {

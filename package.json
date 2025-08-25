@@ -6,7 +6,12 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "npm run test:app && npm run test:ui && npm run test:state && npm run test:todo && npm run test:users",
+    "test:app": "ng test --browsers=ChromeHeadless --watch=false",
+    "test:ui": "ng test ui --browsers=ChromeHeadless --watch=false",
+    "test:state": "ng test state --browsers=ChromeHeadless --watch=false",
+    "test:todo": "ng test todo --browsers=ChromeHeadless --watch=false",
+    "test:users": "ng test users --browsers=ChromeHeadless --watch=false"
   },
   "prettier": {
     "printWidth": 100,

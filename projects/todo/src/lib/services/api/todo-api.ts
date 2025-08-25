@@ -1,5 +1,5 @@
 import { httpResource } from '@angular/common/http';
-import { inject, Injectable, Injector, ResourceStatus, Signal } from '@angular/core';
+import { Injectable, ResourceStatus, Signal } from '@angular/core';
 import { Todo } from '../../models/todo.models';
 import { User } from '@users';
 
@@ -7,8 +7,6 @@ import { User } from '@users';
   providedIn: 'root',
 })
 export class TodoApi {
-  private readonly _injector = inject(Injector);
-
   getTodoById(
     user: Signal<User | null>,
     newTodoStatus?: Signal<ResourceStatus>,
