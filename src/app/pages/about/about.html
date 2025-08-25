@@ -1,1 +1,100 @@
-<p>about works!</p>
+<div class="accordion container" id="aboutNotes">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
+        Architecture
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#aboutNotes">
+      <div class="accordion-body">
+        <ol>
+          <li>This application was built with the latest version of Angular 20.2.</li>
+          <li>The main app contains the app's views.</li>
+          <li>
+            Different libraries have been created to centralize business logic and UI components.
+          </li>
+          <li>
+            A guard has been included to ensure that only authenticated users access the home view.
+          </li>
+          <li>
+            An Interceptor has been included to ensure a maximum time of 3 seconds in calls and
+            centralization of errors.
+          </li>
+          <li>The APIs consumed are public and are not part of the development of this app.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseTwo"
+        aria-expanded="false"
+        aria-controls="collapseTwo"
+      >
+        Workflow
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#aboutNotes">
+      <div class="accordion-body">
+        <ol>
+          <li>The main app contains 3 views: Login, Home and About</li>
+          <li>
+            The application starts in the login view, where all users are initially listed. The
+            email address entered is validated as a valid one.
+          </li>
+          <li>
+            With these userIds, calls are made to retrieve the user's pending TODOs displayed in the
+            home view.
+          </li>
+          <li>
+            CRUD calls will be based on that user to verify that operations from different users are
+            not being handled.
+          </li>
+          <li>
+            The notification system has been generally positioned at the bottom right of the
+            application.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseThree"
+        aria-expanded="false"
+        aria-controls="collapseThree"
+      >
+        Clarifications
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#aboutNotes">
+      <div class="accordion-body">
+        <ol>
+          <li>The main app contains 3 views: Login, Home and About</li>
+          <li>BI libraries contain a Facade service for integration with other components</li>
+          <li>BI libraries contain an API service that handles Http calls to external APIs.</li>
+          <li>BI libraries contain a service Utils contain the main BI logic</li>
+          <li>
+            It has been considered useful to add an additional "login" view to what is requested to
+            ensure a better user experience and better control the flow of the application.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
